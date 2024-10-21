@@ -1,8 +1,8 @@
 # Watermill Amazon SQS/SNS Pub/Sub
 <img align="right" width="200" src="https://threedots.tech/watermill-io/watermill-logo.png">
 
-[![CI Status](https://github.com/ThreeDotsLabs/watermill-amazonsqs/actions/workflows/master.yml/badge.svg)](https://github.com/ThreeDotsLabs/watermill-amazonsqs/actions/workflows/master.yml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/ThreeDotsLabs/watermill-amazonsqs)](https://goreportcard.com/report/github.com/ThreeDotsLabs/watermill-amazonsqs)
+[![CI Status](https://github.com/ThreeDotsLabs/watermill-aws/actions/workflows/master.yml/badge.svg)](https://github.com/ThreeDotsLabs/watermill-aws/actions/workflows/master.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/ThreeDotsLabs/watermill-aws)](https://goreportcard.com/report/github.com/ThreeDotsLabs/watermill-aws)
 
 This is Pub/Sub for the [Watermill](https://watermill.io/) project.
 It uses the [Amazon SQS](https://aws.amazon.com/sqs/) and [Amazon SNS](https://aws.amazon.com/sns/) services.

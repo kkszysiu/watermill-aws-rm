@@ -13,7 +13,7 @@ import (
 // For example:
 // import (
 //
-//	"github.com/ThreeDotsLabs/watermill-amazonsqs/sqs"
+//	"github.com/ThreeDotsLabs/watermill-aws/sqs"
 //	amazonsqs "github.com/aws/aws-sdk-go-v2/service/sqs"
 //	"github.com/aws/smithy-go/transport"
 //

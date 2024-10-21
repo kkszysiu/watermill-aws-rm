@@ -1,7 +1,7 @@
 package sns
 
 import (
-	"github.com/ThreeDotsLabs/watermill-amazonsqs/sqs"
+	"github.com/ThreeDotsLabs/watermill-aws/sqs"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/sns"
 	"github.com/aws/aws-sdk-go-v2/service/sns/types"

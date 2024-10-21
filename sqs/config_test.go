@@ -3,7 +3,7 @@ package sqs_test
 import (
 	"testing"
 
-	"github.com/ThreeDotsLabs/watermill-amazonsqs/sqs"
+	"github.com/ThreeDotsLabs/watermill-aws/sqs"
 	"github.com/stretchr/testify/require"
 )
 

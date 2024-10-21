@@ -9,7 +9,7 @@ import (
 	amazonsns "github.com/aws/aws-sdk-go-v2/service/sns"
 	amazonsqs "github.com/aws/aws-sdk-go-v2/service/sqs"
 
-	"github.com/ThreeDotsLabs/watermill-amazonsqs/sqs"
+	"github.com/ThreeDotsLabs/watermill-aws/sqs"
 	awsconfig "github.com/aws/aws-sdk-go-v2/config"
 	transport "github.com/aws/smithy-go/endpoints"
 	"github.com/stretchr/testify/assert"
@@ -18,7 +18,7 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/ThreeDotsLabs/watermill"
-	"github.com/ThreeDotsLabs/watermill-amazonsqs/sns"
+	"github.com/ThreeDotsLabs/watermill-aws/sns"
 	"github.com/ThreeDotsLabs/watermill/message"
 	"github.com/ThreeDotsLabs/watermill/pubsub/tests"
 )

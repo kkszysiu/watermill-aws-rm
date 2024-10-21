@@ -1,4 +1,4 @@
-module github.com/ThreeDotsLabs/watermill-amazonsqs
+module github.com/ThreeDotsLabs/watermill-aws
 
 go 1.21
 
@@ -10,6 +10,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/sns v1.31.4
 	github.com/aws/aws-sdk-go-v2/service/sqs v1.34.4
 	github.com/aws/smithy-go v1.20.4
+	github.com/pkg/errors v0.9.1
 	github.com/stretchr/testify v1.8.4
 )
 
@@ -30,7 +31,6 @@ require (
 	github.com/kr/text v0.2.0 // indirect
 	github.com/lithammer/shortuuid/v3 v3.0.7 // indirect
 	github.com/oklog/ulid v1.3.1 // indirect
-	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/rogpeppe/go-internal v1.9.0 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
