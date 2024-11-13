@@ -3,15 +3,13 @@ package sqs
 import (
 	"context"
 	"errors"
+	"github.com/ThreeDotsLabs/watermill/message"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/sqs/types"
 	"github.com/bytedance/sonic"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
-	"strconv"
-
-	"github.com/ThreeDotsLabs/watermill/message"
 )
 
 type rmMongoSqsMessage struct {
@@ -21,7 +19,7 @@ type rmMongoSqsMessage struct {
 type rmMongoMessage struct {
 	Id        string `json:"_id"`
 	Body      []byte `json:"body"`
-	Timestamp int64  `json:"timestamp"`
+	Timestamp string `json:"timestamp"`
 }
 
 type RmMongoMarshaler interface {
@@ -94,7 +92,7 @@ func (d DefaultRmMongoMarshalerUnmarshaler) Unmarshal(msg *types.Message) (*mess
 		return nil, err
 	}
 
-	attributes["timestamp"] = strconv.FormatInt(mongoMessage.Timestamp, 10)
+	attributes["timestamp"] = mongoMessage.Timestamp
 	attributes["_id"] = mongoMessage.Id
 	wmsg := message.NewMessage(uuid, mongoMessage.Body)
 	wmsg.Metadata = attributes
