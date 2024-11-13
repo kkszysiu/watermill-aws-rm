@@ -17,7 +17,7 @@ type SubscriberConfig struct {
 	// AWSConfig is the AWS configuration.
 	AWSConfig aws.Config
 
-	MongoConfig *mongo.Database
+	MongoDb *mongo.Database
 
 	// OptFns are options for the SQS client.
 	OptFns []func(*sqs.Options)
