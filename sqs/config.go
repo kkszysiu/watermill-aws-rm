@@ -86,8 +86,8 @@ func (c SubscriberConfig) Validate() error {
 		err = errors.Join(err, fmt.Errorf("sqs.SubscriberConfig.QueueUrlResolver is nil"))
 	}
 
-	if c.MongoConfig == nil {
-		err = errors.Join(err, errors.New("missing Config.MongoConfig"))
+	if c.MongoDb == nil {
+		err = errors.Join(err, errors.New("missing Config.MongoDb"))
 	}
 
 	return err
