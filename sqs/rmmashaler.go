@@ -10,6 +10,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
+	"time"
 )
 
 type rmMongoSqsMessage struct {
@@ -17,9 +18,9 @@ type rmMongoSqsMessage struct {
 }
 
 type rmMongoMessage struct {
-	Id        string `json:"_id"`
-	Body      []byte `json:"body"`
-	Timestamp string `json:"timestamp"`
+	Id        string    `json:"_id"`
+	Body      []byte    `json:"body"`
+	Timestamp time.Time `json:"timestamp"`
 }
 
 type RmMongoMarshaler interface {
@@ -92,7 +93,7 @@ func (d DefaultRmMongoMarshalerUnmarshaler) Unmarshal(msg *types.Message) (*mess
 		return nil, err
 	}
 
-	attributes["timestamp"] = mongoMessage.Timestamp
+	attributes["timestamp"] = mongoMessage.Timestamp.String()
 	attributes["_id"] = mongoMessage.Id
 	wmsg := message.NewMessage(uuid, mongoMessage.Body)
 	wmsg.Metadata = attributes
