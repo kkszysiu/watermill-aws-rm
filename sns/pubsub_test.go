@@ -15,10 +15,10 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/ThreeDotsLabs/watermill"
-	"github.com/ThreeDotsLabs/watermill-aws/sns"
-	"github.com/ThreeDotsLabs/watermill-aws/sqs"
 	"github.com/ThreeDotsLabs/watermill/message"
 	"github.com/ThreeDotsLabs/watermill/pubsub/tests"
+	"github.com/kkszysiu/watermill-aws-rm/sns"
+	"github.com/kkszysiu/watermill-aws-rm/sqs"
 )
 
 func TestPublishSubscribe(t *testing.T) {

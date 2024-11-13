@@ -10,11 +10,14 @@ import (
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/sqs"
 	"github.com/aws/aws-sdk-go-v2/service/sqs/types"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
 type SubscriberConfig struct {
 	// AWSConfig is the AWS configuration.
 	AWSConfig aws.Config
+
+	MongoConfig *mongo.Database
 
 	// OptFns are options for the SQS client.
 	OptFns []func(*sqs.Options)
@@ -83,12 +86,18 @@ func (c SubscriberConfig) Validate() error {
 		err = errors.Join(err, fmt.Errorf("sqs.SubscriberConfig.QueueUrlResolver is nil"))
 	}
 
+	if c.MongoConfig == nil {
+		err = errors.Join(err, errors.New("missing Config.MongoConfig"))
+	}
+
 	return err
 }
 
 type PublisherConfig struct {
 	// AWSConfig is the AWS configuration.
 	AWSConfig aws.Config
+
+	MongoConfig *mongo.Database
 
 	// OptFns are options for the SQS client.
 	OptFns []func(*sqs.Options)
@@ -134,6 +143,10 @@ func (c *PublisherConfig) Validate() error {
 
 	if c.QueueUrlResolver == nil {
 		err = errors.Join(err, fmt.Errorf("sqs.SubscriberConfig.QueueUrlResolver is nil"))
+	}
+
+	if c.AWSConfig.Credentials == nil {
+		err = errors.Join(err, errors.New("missing Config.Credentials"))
 	}
 
 	return err

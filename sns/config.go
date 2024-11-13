@@ -6,9 +6,9 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/ThreeDotsLabs/watermill-aws/sqs"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/sns"
+	"github.com/kkszysiu/watermill-aws-rm/sqs"
 )
 
 type PublisherConfig struct {

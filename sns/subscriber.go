@@ -6,11 +6,11 @@ import (
 	"fmt"
 
 	"github.com/ThreeDotsLabs/watermill"
-	"github.com/ThreeDotsLabs/watermill-aws/sqs"
 	"github.com/ThreeDotsLabs/watermill/message"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/sns"
 	awsSqs "github.com/aws/aws-sdk-go-v2/service/sqs"
+	"github.com/kkszysiu/watermill-aws-rm/sqs"
 )
 
 type Subscriber struct {
