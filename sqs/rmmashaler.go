@@ -9,12 +9,19 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
+	"strconv"
 
 	"github.com/ThreeDotsLabs/watermill/message"
 )
 
 type rmMongoSqsMessage struct {
-	ID string `json:"_id"`
+	Id string `json:"_id"`
+}
+
+type rmMongoMessage struct {
+	Id        string `json:"_id"`
+	Body      []byte `json:"body"`
+	Timestamp int64  `json:"timestamp"`
 }
 
 type RmMongoMarshaler interface {
@@ -77,16 +84,19 @@ func (d DefaultRmMongoMarshalerUnmarshaler) Unmarshal(msg *types.Message) (*mess
 	}
 
 	// Fetch data from MongoDB
-	objectId, err := primitive.ObjectIDFromHex(rmSqsMessage.ID)
+	objectId, err := primitive.ObjectIDFromHex(rmSqsMessage.Id)
 	if err != nil {
 		return nil, err
 	}
-	raw, err := d.MongoCollection.FindOne(context.Background(), bson.M{"_id": objectId}).Raw()
+	mongoMessage := rmMongoMessage{}
+	err = d.MongoCollection.FindOne(context.Background(), bson.M{"_id": objectId}).Decode(&mongoMessage)
 	if err != nil {
 		return nil, err
 	}
 
-	wmsg := message.NewMessage(uuid, message.Payload(raw))
+	attributes["timestamp"] = strconv.FormatInt(mongoMessage.Timestamp, 10)
+	attributes["_id"] = mongoMessage.Id
+	wmsg := message.NewMessage(uuid, mongoMessage.Body)
 	wmsg.Metadata = attributes
 
 	return wmsg, nil
