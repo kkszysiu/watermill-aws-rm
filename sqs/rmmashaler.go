@@ -77,7 +77,11 @@ func (d DefaultRmMongoMarshalerUnmarshaler) Unmarshal(msg *types.Message) (*mess
 	}
 
 	// Fetch data from MongoDB
-	raw, err := d.MongoCollection.FindOne(context.Background(), bson.M{"_id": primitive.ObjectIDFromHex(rmSqsMessage.ID)}).Raw()
+	objectId, err := primitive.ObjectIDFromHex(rmSqsMessage.ID)
+	if err != nil {
+		return nil, err
+	}
+	raw, err := d.MongoCollection.FindOne(context.Background(), bson.M{"_id": objectId}).Raw()
 	if err != nil {
 		return nil, err
 	}
